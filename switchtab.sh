@@ -1,6 +1,6 @@
 #!/bin/bash
-initial_wait=60		# initial wait after detecting chromium
-initial_time_per_tab=30 # initial time per tab - to get them up and runnning
+initial_wait=30		# initial wait after detecting chromium
+initial_time_per_tab=20 # initial time per tab - to get them up and runnning
 normal_time_per_tab=20  # normal time for a tab to be visual
 chrome_poll_interval=5  # polling interval to detect chromium
 number_of_tabs=$(cat tabs.txt | wc -l)
@@ -57,7 +57,7 @@ refresh_if_necessary() {
 }
 
 switch_if_necessary() {
-  if (( SECONDS %  == normal_time_per_tab )) 
+  if (( SECONDS %  normal_time_per_tab == 0 )) 
   then 
     switch_tab
   fi
@@ -66,6 +66,7 @@ switch_if_necessary() {
 
 
 wait_for_chrome
+echo waiting for chrome to get steady for $initial_wait seconds
 sleep $initial_wait
 refresh_all_tabs
 while true
