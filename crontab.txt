@@ -1,0 +1,2 @@
+0 17 * * 1-4 ./wakeup_after_hours.sh 16
+0 17 * * 5 ./wakeup_after_hours.sh 64

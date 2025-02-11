@@ -1,4 +1,7 @@
-chromium-browser $(cat ~/tabs.txt) \
+config_dir=~/.config/pipeline-kiosk
+tabs_file=${config_dir}/tabs.txt
+
+chromium-browser $(cat ${tabs_file}) \
        --kiosk \
        --noerrdialogs \
        --disable-infobars \

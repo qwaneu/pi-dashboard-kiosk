@@ -1,9 +1,24 @@
 #!/bin/bash
-initial_wait=30		# initial wait after detecting chromium
-initial_time_per_tab=20 # initial time per tab - to get them up and runnning
-normal_time_per_tab=20  # normal time for a tab to be visual
-chrome_poll_interval=5  # polling interval to detect chromium
-number_of_tabs=$(cat tabs.txt | wc -l)
+# This script cycles through tabs of a running chromium instance. 
+# It also refreshes all tabs once in a while.
+#
+# It uses wtype to simulate key presses:
+#   - ctrl-tab for tab switches
+#   - ctrl-r for refreshes
+#
+# While doing so, it monitors the running status. It only sends key presses
+# when chromium is running.
+# 
+# It assumes a tabs.txt in the current directory
+# 
+config_dir=~/.config/pipeline-kiosk
+tabs_file=${config_dir}/tabs.txt
+
+initial_wait=30		                    # initial wait after detecting chromium
+initial_time_per_tab=20               # initial time per tab - to get them up and runnning
+normal_time_per_tab=20                # normal time for a tab to be visual
+chrome_poll_interval=5                # polling interval to detect chromium
+number_of_tabs=$(cat ${tabs_file} | wc -l)
 switches=0
 
 export XDG_RUNTIME_DIR=/run/user/1000
@@ -62,8 +77,6 @@ switch_if_necessary() {
     switch_tab
   fi
 }
-
-
 
 wait_for_chrome
 echo waiting for chrome to get steady for $initial_wait seconds
