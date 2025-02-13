@@ -60,7 +60,7 @@ note() {
     echo "${str}" $(printf "%${padded_length}s" | tr ' ' '=')
 }
 
-
+# configure choices
 done_configuring=false
 while ! $done_configuring
 do
@@ -93,6 +93,7 @@ do
     done_configuring=$(confirm "Are these values correct?" false)
 done
 
+# Installing
 note installing dependencies
 sudo apt-get update
 sudo apt-get -y upgrade
@@ -127,7 +128,7 @@ then
 wifi_updater = bash ${install_location}/update-wifi.sh" | crudini --merge ${HOME}/.config/wayfire.ini
     
     sed -i 's/^monitor_wifi.*$/monitor_wifi=true/' ${config_dir}/pipeline-kiosk/wifi.config
-    sed -i "s/^connection_name.*$/connction_name=${wifi_connection_to_update}/" ${config_dir}/pipeline-kiosk/wifi.config
+    sed -i "s/^connection_name.*$/connction_name=\"${wifi_connection_to_update}\"/" ${config_dir}/pipeline-kiosk/wifi.config
 fi
 
 if $install_cron
@@ -137,6 +138,7 @@ then
     (crontab -l 2>/dev/null; echo "0 17 * * 5 ${install_location}/wakeup_after_hours.sh 64") | crontab -
 fi
 
+# showing results
 note done installing
 note summary
 note this is your installation
@@ -153,3 +155,8 @@ cat ${config_dir}/pipeline-kiosk/wifi.config
 echo
 note this is your crontab
 crontab -l
+echo 
+note "="
+note TODO:
+echo edit ${config_dir}/pipeline-config/tabs.txt to contain your tabs
+echo edit ${config_dir}/pipeline-config/wifi-credentials.txt to contain credentials for each month
