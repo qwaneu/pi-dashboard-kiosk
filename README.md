@@ -26,7 +26,7 @@ We need the latter, to make sure the browsertab's session is kept open.
 On your pi run
 
 ```bash
-https://raw.githubusercontent.com/qwaneu/pi-dashboard-kiosk/refs/heads/main/kiosk-scripts/install.sh
+wget https://raw.githubusercontent.com/qwaneu/pi-dashboard-kiosk/refs/heads/main/kiosk-scripts/install.sh
 chmod +x install.sh
 ./install.sh
 ```
