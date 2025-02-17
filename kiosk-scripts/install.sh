@@ -98,7 +98,7 @@ done
 note installing dependencies
 sudo apt-get update
 sudo apt-get -y upgrade
-sudo apt-get -y install wtype crudini unzip cron jq
+sudo apt-get -y install wtype crudini unzip cron jq rsync
 
 note installing scripts
 tmp_location=/tmp/pi-dashboard-kiosk

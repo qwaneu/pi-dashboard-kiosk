@@ -13,7 +13,7 @@ update_self() {
     wget https://github.com/qwaneu/pi-dashboard-kiosk/archive/refs/tags/${latest_version}.zip -qO ${tmp_location}.zip -qO ${tmp_location}.zip
     rm -rf ${tmp_location}-${latest_version}
     unzip ${tmp_location}.zip -d /tmp
-    cp -av ${tmp_location}-${latest_version}/kiosk-scripts ${install_location}
+    rsync -av --delete ${tmp_location}-${latest_version}/kiosk-scripts/* ${install_location}
     sed -i "s/current_version=.*/current_version=${latest_version}/" ${config_dir}/install.config
 }
 
