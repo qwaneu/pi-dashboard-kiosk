@@ -117,6 +117,7 @@ then
     echo "[autostart]
 chromium = bash ${install_location}/dashboard.sh
 switchtab = bash ${install_location}/switchtab.sh
+updateself = bash ${install_location}/update-self.sh
 screensaver = false
 dpms = false" | crudini --merge ${HOME}/.config/wayfire.ini
 fi
