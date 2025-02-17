@@ -8,8 +8,6 @@ get_latest_version() {
 }
 
 update_self() {
-    echo update_self $@
-    return
     local latest_version="$1"
     local tmp_location=/tmp/pi-dashboard-kiosk
     wget https://github.com/qwaneu/pi-dashboard-kiosk/archive/refs/tags/${latest_version}.zip -qO ${tmp_location}.zip -qO ${tmp_location}.zip
@@ -21,5 +19,5 @@ update_self() {
 latest_version=$(get_latest_version)
 
 if [[ "$latest_version" > "$current_version" ]]; then
-    update_self latest_version
+    update_self "$latest_version"
 fi

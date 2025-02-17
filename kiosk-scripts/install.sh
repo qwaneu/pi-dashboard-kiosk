@@ -98,7 +98,7 @@ done
 note installing dependencies
 sudo apt-get update
 sudo apt-get -y upgrade
-sudo apt-get -y install wtype crudini unzip cron
+sudo apt-get -y install wtype crudini unzip cron jq
 
 note installing scripts
 tmp_location=/tmp/pi-dashboard-kiosk
@@ -109,7 +109,7 @@ cp -av ${tmp_location}-main/kiosk-scripts ${install_location}
 
 note installing config
 cp -av ${tmp_location}-main/config/pipeline-kiosk ${pipeline_kiosk_config}
-sed -ie "s/install_location.*/install_location=${install_location}/" ${pipeline_kiosk_config}/install.config
+sed -i "s,install_location.*,install_location=${install_location}," ${pipeline_kiosk_config}/install.config
 
 if $install_startup 
 then 
@@ -152,6 +152,7 @@ find ${config_dir} -ls
 echo
 note wifi config
 cat ${pipeline_kiosk_config}/wifi.config
+cat ${pipeline_kiosk_config}/install.config
 echo
 note this is your crontab
 crontab -l
