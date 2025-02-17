@@ -1,3 +1,4 @@
 workdir/
-test/install_kiosk.sh
+test/install-test.sh
+test/update-self.sh
 

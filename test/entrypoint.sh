@@ -1,6 +1,7 @@
 #!/bin/bash
 
+echo $1
 # mimick running the remote installer from github
-./install-kiosk.sh
+./"${1}".sh
 
 

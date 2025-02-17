@@ -12,7 +12,8 @@ USER testuser
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Amsterdam
 COPY entrypoint.sh /home/testuser
-COPY install-kiosk.sh /home/testuser
+COPY install-test.sh /home/testuser
 WORKDIR /home/testuser
+RUN ls -al
 RUN mkdir .config
-CMD ["./entrypoint.sh", "install-kiosk"]
+ENTRYPOINT ["./entrypoint.sh"]

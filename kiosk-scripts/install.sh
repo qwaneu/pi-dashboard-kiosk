@@ -3,6 +3,7 @@ version=0.0.1
 
 install_location=${HOME}/kiosk-scripts
 config_dir=${HOME}/.config
+pipeline_kiosk_config=${config_dir}/pipeline-kiosk
 install_cron=true
 install_startup=true
 install_wifi_update=true
@@ -102,14 +103,13 @@ sudo apt-get -y install wtype crudini unzip cron
 note installing scripts
 tmp_location=/tmp/pi-dashboard-kiosk
 wget https://github.com/qwaneu/pi-dashboard-kiosk/archive/refs/heads/main.zip -qO ${tmp_location}.zip
-ls /tmp
 
 unzip ${tmp_location}.zip -d /tmp
-find /tmp 
 cp -av ${tmp_location}-main/kiosk-scripts ${install_location}
 
 note installing config
-cp -av ${tmp_location}-main/config/pipeline-kiosk ${config_dir}/pipeline-kiosk
+cp -av ${tmp_location}-main/config/pipeline-kiosk ${pipeline_kiosk_config}
+sed -ie "s/install_location.*/install_location=${install_location}/" ${pipeline_kiosk_config}/install.config
 
 if $install_startup 
 then 
@@ -127,8 +127,8 @@ then
     echo "[autostart]
 wifi_updater = bash ${install_location}/update-wifi.sh" | crudini --merge ${HOME}/.config/wayfire.ini
     
-    sed -i 's/^monitor_wifi.*$/monitor_wifi=true/' ${config_dir}/pipeline-kiosk/wifi.config
-    sed -i "s/^connection_name.*$/connction_name=\"${wifi_connection_to_update}\"/" ${config_dir}/pipeline-kiosk/wifi.config
+    sed -i 's/^monitor_wifi.*$/monitor_wifi=true/' ${pipeline_kiosk_config}/wifi.config
+    sed -i "s/^connection_name.*$/connction_name=\"${wifi_connection_to_update}\"/" ${pipeline_kiosk_config}/wifi.config
 fi
 
 if $install_cron
@@ -151,7 +151,7 @@ note this is your configuration
 find ${config_dir} -ls
 echo
 note wifi config
-cat ${config_dir}/pipeline-kiosk/wifi.config
+cat ${pipeline_kiosk_config}/wifi.config
 echo
 note this is your crontab
 crontab -l
