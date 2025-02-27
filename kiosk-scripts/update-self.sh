@@ -10,7 +10,7 @@ have_network_connection() {
 }
 
 wait_for_network() {
-    while ! have_network_connection(); do
+    while ! have_network_connection  ; do
         sleep network_poll_interval
     done
 }
