@@ -10,9 +10,9 @@ have_network_connection() {
 }
 
 wait_for_network() {
-    while ! have_network_connection() {
+    while ! have_network_connection(); do
         sleep network_poll_interval
-    }
+    done
 }
 
 get_latest_version() {
