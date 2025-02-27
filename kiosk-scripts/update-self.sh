@@ -3,6 +3,18 @@
 config_dir=~/.config/pipeline-kiosk
 source ${config_dir}/install.config
 
+network_poll_interval=10
+
+have_network_connection() {
+   curl google.com &> /dev/null
+}
+
+wait_for_network() {
+    while ! have_network_connection() {
+        sleep network_poll_interval
+    }
+}
+
 get_latest_version() {
     wget -qO- https://api.github.com/repos/qwaneu/pi-dashboard-kiosk/tags  | jq -r '.[0] .name'
 }
@@ -18,6 +30,8 @@ update_self() {
 }
 
 latest_version=$(get_latest_version)
+
+wait_for_network
 
 if [[ "$latest_version" > "$current_version" ]]; then
     update_self "$latest_version"
