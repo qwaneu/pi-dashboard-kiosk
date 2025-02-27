@@ -29,9 +29,9 @@ update_self() {
     sed -i "s/current_version=.*/current_version=${latest_version}/" ${config_dir}/install.config
 }
 
-latest_version=$(get_latest_version)
-
 wait_for_network
+
+latest_version=$(get_latest_version)
 
 if [[ "$latest_version" > "$current_version" ]]; then
     update_self "$latest_version"
