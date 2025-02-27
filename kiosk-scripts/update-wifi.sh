@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script checkt the nework connection. If it is not available, 
+# This script checks the nework connection. If it is not available, 
 # it edits the connection based on the month
 
 config_dir=~/.config/pipeline-kiosk

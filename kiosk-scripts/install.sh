@@ -1,5 +1,5 @@
 #!/bin/bash
-version=0.0.1
+# this script installs the kiosk interactively
 
 install_location=${HOME}/kiosk-scripts
 config_dir=${HOME}/.config

@@ -1,5 +1,10 @@
 #!/bin/bash
-
+# update-self 
+# updates the installation by 
+# 1. waiting for the network connection
+# 2. getting the new version  (latest tag from git)
+# 3. comparing it against the current version (from install.config)
+# 4. install the scripts of the newer version if it is higher
 config_dir=~/.config/pipeline-kiosk
 source ${config_dir}/install.config
 
