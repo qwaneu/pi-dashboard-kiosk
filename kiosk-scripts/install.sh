@@ -129,7 +129,7 @@ then
 wifi_updater = bash ${install_location}/update-wifi.sh" | crudini --merge ${HOME}/.config/wayfire.ini
     
     sed -i 's/^monitor_wifi.*$/monitor_wifi=true/' ${pipeline_kiosk_config}/wifi.config
-    sed -i "s/^connection_name.*$/connction_name=\"${wifi_connection_to_update}\"/" ${pipeline_kiosk_config}/wifi.config
+    sed -i "s/^connection_name.*$/connection_name=\"${wifi_connection_to_update}\"/" ${pipeline_kiosk_config}/wifi.config
 fi
 
 if $install_cron
