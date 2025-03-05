@@ -105,10 +105,10 @@ tmp_location=/tmp/pi-dashboard-kiosk
 wget https://github.com/qwaneu/pi-dashboard-kiosk/archive/refs/heads/main.zip -qO ${tmp_location}.zip
 
 unzip ${tmp_location}.zip -d /tmp
-cp -av ${tmp_location}-main/kiosk-scripts/ ${install_location}
+cp -avT ${tmp_location}-main/kiosk-scripts ${install_location}
 
 note installing config
-cp -anv ${tmp_location}-main/config/pipeline-kiosk/ ${pipeline_kiosk_config}
+cp -anvT ${tmp_location}-main/config/pipeline-kiosk ${pipeline_kiosk_config}
 sed -i "s,install_location.*,install_location=${install_location}," ${pipeline_kiosk_config}/install.config
 
 if $install_startup 
