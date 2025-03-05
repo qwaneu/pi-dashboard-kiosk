@@ -9,7 +9,7 @@ monthly_wifi_credentials_file=${config_dir}/wifi-credentials.txt
 
 edit_connection() {
         local username=$1
-        local password=$2s
+        local password=$2
         sudo sed -i -e "s/identity=.*/identity=${username}/" \
                 -e "s/password=.*/password=${password}/" \
                 "/etc/NetworkManager/system-connections/${connection_name}.nmconnection"
