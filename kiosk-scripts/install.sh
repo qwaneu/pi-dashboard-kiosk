@@ -108,7 +108,7 @@ unzip ${tmp_location}.zip -d /tmp
 cp -av ${tmp_location}-main/kiosk-scripts ${install_location}
 
 note installing config
-cp -av ${tmp_location}-main/config/pipeline-kiosk ${pipeline_kiosk_config}
+cp -anv ${tmp_location}-main/config/pipeline-kiosk ${pipeline_kiosk_config}
 sed -i "s,install_location.*,install_location=${install_location}," ${pipeline_kiosk_config}/install.config
 
 if $install_startup 
@@ -149,10 +149,11 @@ note this is your wayfire.ini
 cat ${config_dir}/wayfire.ini
 echo
 note this is your configuration
-find ${config_dir} -ls
+find ${config_dir}/pipeline-config/ -ls
 echo
 note wifi config
 cat ${pipeline_kiosk_config}/wifi.config
+note install config
 cat ${pipeline_kiosk_config}/install.config
 echo
 note this is your crontab
