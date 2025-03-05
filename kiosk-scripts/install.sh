@@ -89,7 +89,7 @@ do
     print_value "Install cron for nine to five" $install_cron
     print_value "Install startup script in .config/wayfire.ini" $install_startup
     print_value "Install update wifi connetions" $install_wifi_update
-    [[ $install_wifi_update ]] && print_value "Wifi connction to update" "$wifi_connection_to_update"
+    [[ $install_wifi_update ]] && print_value "Wifi connection to update" "$wifi_connection_to_update"
     echo
     done_configuring=$(confirm "Are these values correct?" false)
 done
